@@ -9,6 +9,9 @@ public class Main {
         //
         //Trade JSON:
         //{"id": 4569, "quantity": 5, "legs":[{"symbol": "ACOR1 210416C00001000" , "type":"short/long"}]}
+
+
+
         //{"id": 4567, "quantity": 7, "legs":[{"symbol": "ACOR1 210416C00001000" , "type":"short/long"}]}
 
 
@@ -20,23 +23,9 @@ public class Main {
         //
 
         //create function list of position and list of trades
-        // return back a list of extra positions and list of positionos thas are missing
+        //return back a list of extra positions and list of positionos thas are missing
 
-        //tests
-
-        /*
-            у нас есть 2 джсона, первый это позиция в которой очень важен параметр количества
-            и тип (длинный или короткий)
-
-            Базовые проверки
-            1. Нам надо проверять совпадает ли Type
-            2. Проверяем совпадает ли Symbol
-            3. Проверяем совпадает ли количество в Позиции с количеством в Трайде
-            3.1 Если количество сразу не совпало. то бежим циклом в les
-
-
-         */
-        Handler.doLogic();
+        TradeProcessor.doLogic();
     }
 
 
@@ -72,4 +61,11 @@ public class Main {
 //    }
 
 
+
+    /*
+        1. все позиции заматичились
+        2. пришлось больше поизций чем трейдов -> лишниее позиции они extra
+        3. пришлось меньеш позиций чем трейдов -> missing + trade в not match
+        4.
+     */
 }

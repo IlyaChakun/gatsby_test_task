@@ -1,38 +1,34 @@
 package by.chakun;
 
-import java.util.List;
+import lombok.*;
 
-//{"id": 4569, "quantity": 5, "legs":[{"symbol": "ACOR1 210416C00001000" , "type":"short/long"}]}
+import java.util.List;
+import java.util.Objects;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class TradeJson {
 
     private Long id;
     private Integer quantity;
     private List<TradeJsonLeg> legs;
 
-    public Long getId() {
-        return id;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TradeJson)) return false;
+        TradeJson tradeJson = (TradeJson) o;
+        return Objects.equals(legs, tradeJson.legs);
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        return Objects.hash(legs);
     }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public List<TradeJsonLeg> getLegs() {
-        return legs;
-    }
-
-    public void setLegs(List<TradeJsonLeg> legs) {
-        this.legs = legs;
-    }
-
 
 
 }

@@ -1,37 +1,25 @@
 package by.chakun;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 public class ApiResponse {
 
-    private List<PositionJsonProxy> extraPositions = new ArrayList<>();
+    private List<TradeJson> matchedTrades = new ArrayList<>();
 
-    private List<PositionJsonProxy> missingPositions = new ArrayList<>();
+    private List<TradeJson> notMatchedTrades = new ArrayList<>();
 
+    private List<PositionJson> extraPositions = new ArrayList<>();//когда в позиции пришло но в трейде не было
 
-    public List<PositionJsonProxy> getExtraPositions() {
-        return extraPositions;
-    }
+    private List<PositionJson> missingPositions = new ArrayList<>();//когда в позиции не пришло но в трейде было
 
-    public void setExtraPositions(List<PositionJsonProxy> extraPositions) {
-        this.extraPositions = extraPositions;
-    }
-
-    public List<PositionJsonProxy> getMissingPositions() {
-        return missingPositions;
-    }
-
-    public void setMissingPositions(List<PositionJsonProxy> missingPositions) {
-        this.missingPositions = missingPositions;
-    }
-
-
-    @Override
-    public String toString() {
-        return "ApiResponse{" +
-                "extraPositions=" + extraPositions +
-                ", missingPositions=" + missingPositions +
-                '}';
-    }
 }

@@ -1,26 +1,31 @@
 package by.chakun;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.util.Objects;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
 public class TradeJsonLeg {
 
-    //{"symbol": "ACOR1 210416C00001000" , "type":"short/long"}
-
     private String symbol;
-    private String type;
+    private PositionType type;
 
-
-    public String getSymbol() {
-        return symbol;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TradeJsonLeg)) return false;
+        TradeJsonLeg that = (TradeJsonLeg) o;
+        return Objects.equals(symbol, that.symbol) && Objects.equals(type, that.type);
     }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    @Override
+    public int hashCode() {
+        return Objects.hash(symbol, type);
     }
 }

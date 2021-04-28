@@ -1,7 +1,15 @@
 package by.chakun;
 
+import java.util.Objects;
+
 public class PositionJsonProxy {
 
+    private PositionJson positionJson;
+
+    private final int quantity;
+
+    private int receivedQuantity;
+    private int actualQuantity;
 
     public PositionJsonProxy(int actualQuantity,
                              int receivedQuantity) {
@@ -23,12 +31,6 @@ public class PositionJsonProxy {
         this.positionJson = positionJson;
     }
 
-    private PositionJson positionJson;
-
-    private int quantity;
-
-    private int receivedQuantity;
-    private int actualQuantity;
 
 
     public int getReceivedQuantity() {
@@ -61,9 +63,22 @@ public class PositionJsonProxy {
 
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PositionJsonProxy)) return false;
+        PositionJsonProxy that = (PositionJsonProxy) o;
+        return Objects.equals(positionJson, that.positionJson);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(positionJson);
+    }
+
+    @Override
     public String toString() {
         return "PositionJsonProxy{" +
-                "positionJson=" + positionJson +
+                "positionJson=" + positionJson.getSymbol() +
                 ", quantity=" + quantity +
                 ", receivedQuantity=" + receivedQuantity +
                 ", actualQuantity=" + actualQuantity +
