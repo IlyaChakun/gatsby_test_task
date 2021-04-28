@@ -18,8 +18,8 @@ public class ApiResponse {
 
     private List<TradeJson> notMatchedTrades = new ArrayList<>();
 
-    private List<PositionJson> extraPositions = new ArrayList<>();//когда в позиции пришло но в трейде не было
+    private List<PositionJson> extraPositions = new ArrayList<>();//when it came in position but was not in the trade
 
-    private List<PositionJson> missingPositions = new ArrayList<>();//когда в позиции не пришло но в трейде было
+    private List<PositionJson> missingPositions = new ArrayList<>();//when it didn’t come in position but there was
 
 }

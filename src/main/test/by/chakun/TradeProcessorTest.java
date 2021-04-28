@@ -18,7 +18,6 @@ class TradeProcessorTest {
         //////////
         List<PositionJson> positionJsonList = new ArrayList<>();
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.LONG, 12));
-//EXTRA POSITION ПОТОМУ ЧТО НТЕ ТРЕЙНДОВ
 
         ApiResponse apiResponse = TradeProcessor.parseTradesAndPositions(positionJsonList, tradeJsonList);
 

@@ -61,17 +61,17 @@ public class Main {
 
 
     /*
-        1. все позиции заматичились
-        2. пришлось больше поизций чем трейдов -> лишниее позиции они extra
-        3. пришлось меньеш позиций чем трейдов -> missing + trade в not match
-        4.
+      1.all positions are mated
+        2. had more positions than trades -> extra positions they are extra
+        3. had fewer positions than trades -> missing + trade in not match
+        four.
 
-        ///// есть спред на 12 и есть просто трейд на 5 обычный с одной ногой  (обычный = long) в сумме надо 17 long & 12 short
-//        //если пришло 10 long то trade на 5 собирается, трейд сперд не собирается и все что осталось полсе сбора (12 short и 5 long) в missing
-//        // один и тот же symbol
-//        // в спреде и long и short взаимокомпенсация
-//        // генератор для класса (сделать спред, сделать обычны трейд)
-//        // добавить expected для тестов
+        ///// there is a spread of 12 and there is just a trade of 5 normal with one leg (normal = long) in total, 17 long & 12 short are needed
+// // if 10 long arrived, then trade for 5 is collected, the trade is not collected and all that is left half of the collection (12 short and 5 long) is missing
+// // same symbol
+// // in the spread both long and short compensate
+// // generator for the class (make a spread, make a regular trade)
+// // add expected for tests
 
      */
 }
