@@ -11,6 +11,12 @@ import java.util.Objects;
 @ToString
 public class TradeJsonLeg {
 
+    private boolean isSpreadTrade = false;
+    private boolean shortMatched = false;
+    private boolean longMatched = false;
+    private int shortLeftQuantity;
+    private int longLeftQuantity;
+
     private boolean isMatched;
     private int leftQuantity;
 
