@@ -1,20 +1,24 @@
 package by.chakun;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Objects;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@RequiredArgsConstructor
+@NoArgsConstructor
 @ToString
 public class TradeJsonLeg {
 
+    private boolean isMatched;
+    private int leftQuantity;
+
+    @NonNull
     private String symbol;
+    @NonNull
     private PositionType type;
+
 
     @Override
     public boolean equals(Object o) {

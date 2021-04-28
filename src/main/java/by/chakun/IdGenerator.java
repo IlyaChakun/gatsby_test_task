@@ -1,4 +1,4 @@
-package by.chakun.helper;
+package by.chakun;
 
 
 public class IdGenerator {

@@ -1,5 +1,6 @@
 package by.chakun.helper;
 
+import by.chakun.IdGenerator;
 import by.chakun.PositionJson;
 import by.chakun.PositionType;
 
