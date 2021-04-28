@@ -11,7 +11,6 @@ public class Main {
         //{"id": 4569, "quantity": 5, "legs":[{"symbol": "ACOR1 210416C00001000" , "type":"short/long"}]}
 
 
-
         //{"id": 4567, "quantity": 7, "legs":[{"symbol": "ACOR1 210416C00001000" , "type":"short/long"}]}
 
 
@@ -25,7 +24,6 @@ public class Main {
         //create function list of position and list of trades
         //return back a list of extra positions and list of positionos thas are missing
 
-        TradeProcessor.doLogic();
     }
 
 
