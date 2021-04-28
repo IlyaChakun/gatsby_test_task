@@ -10,12 +10,11 @@ import java.util.List;
 
 class TradeProcessorTest {
 
-
     @Test
     public void testExtraPosition_ExpectedOneExtraPosition() {
 
         List<TradeJson> tradeJsonList = new ArrayList<>();
-        //////////
+
         List<PositionJson> positionJsonList = new ArrayList<>();
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.LONG, 12));
 
@@ -32,7 +31,7 @@ class TradeProcessorTest {
 
         List<TradeJson> tradeJsonList = new ArrayList<>();
         tradeJsonList.add(TradeGenerator.getSimpleTrade("ACOR2 210416C00001000", 11));
-        //////////
+
         List<PositionJson> positionJsonList = new ArrayList<>();
 
         ApiResponse apiResponse = TradeProcessor.parseTradesAndPositions(positionJsonList, tradeJsonList);
@@ -40,7 +39,6 @@ class TradeProcessorTest {
         Assertions.assertNotNull(apiResponse);
         Assertions.assertEquals(1, apiResponse.getNotMatchedTrades().size());
     }
-
 
     @Test
     public void testMatchedTradeList_ExpectedOneTradeMatched() {
@@ -64,7 +62,7 @@ class TradeProcessorTest {
 
         List<TradeJson> tradeJsonList = new ArrayList<>();
         tradeJsonList.add(TradeGenerator.getSimpleTrade("ACOR2 210416C00001000", 11));
-        //////////////////
+
         List<PositionJson> positionJsonList = new ArrayList<>();
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.LONG, 12));
 
@@ -83,13 +81,12 @@ class TradeProcessorTest {
         Assertions.assertEquals(extraPositionQuantity, apiResponse.getExtraPositions().get(0).getQuantity());
     }
 
-
     @Test
     public void testSpreadTrade_ExpectedOneMatched() {
 
         List<TradeJson> tradeJsonList = new ArrayList<>();
         tradeJsonList.add(TradeGenerator.getSpreadTrade("ACOR2 210416C00001000", PositionType.SHORT, 12));
-        //////////////////
+
         List<PositionJson> positionJsonList = new ArrayList<>();
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.SHORT, 12));
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.LONG, 12));
@@ -102,7 +99,6 @@ class TradeProcessorTest {
         Assertions.assertTrue(apiResponse.getNotMatchedTrades().isEmpty());
         Assertions.assertTrue(apiResponse.getMissingPositions().isEmpty());
         Assertions.assertEquals(matchedTrade, apiResponse.getMatchedTrades().size());
-
     }
 
     @Test
@@ -114,7 +110,7 @@ class TradeProcessorTest {
 
         List<TradeJson> tradeJsonList = new ArrayList<>();
         tradeJsonList.add(TradeGenerator.getSimpleTrade(12, legs));
-        //////////////////
+
         List<PositionJson> positionJsonList = new ArrayList<>();
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.LONG, 12));
         positionJsonList.add(PositionGenerator.getPosition("ACOR1 210416C00001000", PositionType.LONG, 12));
@@ -129,9 +125,7 @@ class TradeProcessorTest {
         Assertions.assertTrue(apiResponse.getMissingPositions().isEmpty());
         Assertions.assertTrue(apiResponse.getExtraPositions().isEmpty());
         Assertions.assertEquals(matchedTrade, apiResponse.getMatchedTrades().size());
-
     }
-
 
     @Test
     public void testTradeWithMultipleLegs_ExpectedTwoMatched() {
@@ -143,7 +137,7 @@ class TradeProcessorTest {
         List<TradeJson> tradeJsonList = new ArrayList<>();
         tradeJsonList.add(TradeGenerator.getSimpleTrade("ACOR5 210416C00001000", 5));
         tradeJsonList.add(TradeGenerator.getSimpleTrade(12, legs));
-        //////////////////
+
         List<PositionJson> positionJsonList = new ArrayList<>();
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.LONG, 12));
         positionJsonList.add(PositionGenerator.getPosition("ACOR1 210416C00001000", PositionType.LONG, 12));
@@ -160,9 +154,7 @@ class TradeProcessorTest {
         Assertions.assertTrue(apiResponse.getMissingPositions().isEmpty());
         Assertions.assertTrue(apiResponse.getExtraPositions().isEmpty());
         Assertions.assertEquals(matchedTrade, apiResponse.getMatchedTrades().size());
-
     }
-
 
     @Test
     public void testTradeWithMultipleLegs_CORRECT_SPREAD() {
@@ -173,7 +165,7 @@ class TradeProcessorTest {
 
         List<TradeJson> tradeJsonList = new ArrayList<>();
         tradeJsonList.add(TradeGenerator.getSimpleTrade(12, legs));
-        //////////////////
+
         List<PositionJson> positionJsonList = new ArrayList<>();
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.LONG, 12));
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.SHORT, 12));
@@ -190,9 +182,7 @@ class TradeProcessorTest {
         Assertions.assertTrue(apiResponse.getMissingPositions().isEmpty());
         Assertions.assertTrue(apiResponse.getExtraPositions().isEmpty());
         Assertions.assertEquals(matchedTrade, apiResponse.getMatchedTrades().size());
-
     }
-
 
     @Test
     public void testTradeWithMultipleLegs_ExpectedOneMatchedOneNonMatched() {
@@ -208,7 +198,7 @@ class TradeProcessorTest {
         List<TradeJson> tradeJsonList = new ArrayList<>();
         tradeJsonList.add(TradeGenerator.getSimpleTrade(12, legs));
         tradeJsonList.add(TradeGenerator.getSimpleTrade(5, legs2));
-        //////////////////
+
         List<PositionJson> positionJsonList = new ArrayList<>();
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.LONG, 12));
         positionJsonList.add(PositionGenerator.getPosition("ACOR1 210416C00001000", PositionType.LONG, 12));
@@ -232,14 +222,13 @@ class TradeProcessorTest {
         Assertions.assertEquals(nonMatchedTrade, apiResponse.getNotMatchedTrades().size());
     }
 
-
     @Test
     public void testSpreadTrade_ExpectedOneMatchedOneNonMatched() {
 
         List<TradeJson> tradeJsonList = new ArrayList<>();
         tradeJsonList.add(TradeGenerator.getSpreadTrade("ACOR2 210416C00001000", PositionType.SHORT, 12));
         tradeJsonList.add(TradeGenerator.getSpreadTrade("ACOR3 210416C00001000", PositionType.SHORT, 5));
-        //////////////////
+
         List<PositionJson> positionJsonList = new ArrayList<>();
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.SHORT, 12));
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.LONG, 12));
@@ -255,7 +244,6 @@ class TradeProcessorTest {
         Assertions.assertFalse(apiResponse.getMissingPositions().isEmpty());
         Assertions.assertEquals(matchedTrade, apiResponse.getMatchedTrades().size());
         Assertions.assertEquals(nonMatchedTrade, apiResponse.getNotMatchedTrades().size());
-
     }
 
     @Test
@@ -265,7 +253,7 @@ class TradeProcessorTest {
         tradeJsonList.add(TradeGenerator.getSpreadTrade("ACOR2 210416C00001000", PositionType.SHORT, 12));
         tradeJsonList.add(TradeGenerator.getSpreadTrade("ACOR3 210416C00001000", PositionType.SHORT, 5));
         tradeJsonList.add(TradeGenerator.getSpreadTrade("ACOR4 210416C00001000", PositionType.LONG, 8));
-        //////////////////
+
         List<PositionJson> positionJsonList = new ArrayList<>();
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.SHORT, 12));
         positionJsonList.add(PositionGenerator.getPosition("ACOR2 210416C00001000", PositionType.LONG, 12));
@@ -291,6 +279,5 @@ class TradeProcessorTest {
         Assertions.assertEquals(missingPositionsSize, apiResponse.getMissingPositions().size());
         Assertions.assertEquals(missingPositionQuantity, apiResponse.getMissingPositions().get(1).getQuantity());
     }
-
 
 }

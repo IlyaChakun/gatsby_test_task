@@ -53,7 +53,6 @@ public class TradeProcessor {
         return positionJsonList.isEmpty() && !tradeJsonList.isEmpty();
     }
 
-
     private static void findMissingQuantity(List<PositionJson> positionJsonList,
                                             List<TradeJson> tradeJsonList,
                                             ApiResponse apiResponse) {
@@ -103,7 +102,6 @@ public class TradeProcessor {
 
     private static void setMissingPositions(ApiResponse apiResponse) {
         apiResponse.getNotMatchedTrades().forEach(nonMatchedTrade -> {
-
             for (TradeJsonLeg tradeJsonLeg : nonMatchedTrade.getLegs()) {
                 PositionJson positionJson = new PositionJson();
                 positionJson.setId(IdGenerator.getRandomId());
@@ -116,9 +114,13 @@ public class TradeProcessor {
         });
     }
 
-    private static void setExtraPositions(List<PositionJson> positionJsonList, ApiResponse apiResponse) {
+    private static void setExtraPositions(List<PositionJson> positionJsonList,
+                                          ApiResponse apiResponse) {
         apiResponse.setExtraPositions(
-                positionJsonList.stream().filter(positionJson -> positionJson.getQuantity() > 0).collect(Collectors.toList())
+                positionJsonList
+                        .stream()
+                        .filter(positionJson -> positionJson.getQuantity() > 0)
+                        .collect(Collectors.toList())
         );
     }
 
@@ -140,17 +142,17 @@ public class TradeProcessor {
         }
     }
 
-    private static void doLegParsingForShortPositionType(TradeJsonLeg tradeJsonLeg, List<PositionJson> positionsToRemove, PositionJson positionJson) {
+    private static void doLegParsingForShortPositionType(TradeJsonLeg tradeJsonLeg,
+                                                         List<PositionJson> positionsToRemove,
+                                                         PositionJson positionJson) {
         final int tradeJsonQuantity = tradeJsonLeg.getShortLeftQuantity() - positionJson.getQuantity();
         System.out.println("shortLeftQuantity=" + tradeJsonQuantity);
-
 
         if (tradeJsonQuantity > 0) {//not enough quantity of position
             System.out.println("not enough quantity from this position");
             positionsToRemove.add(positionJson);
 
             tradeJsonLeg.setShortLeftQuantity(tradeJsonQuantity);
-
         } else if (tradeJsonQuantity < 0) {//too much quantity of position
             System.out.println("too much quantity from this position, but trade is matched");
             int newQuantity = tradeJsonQuantity * -1;
@@ -170,7 +172,9 @@ public class TradeProcessor {
         }
     }
 
-    private static void doLegParsingForLongPositionType(TradeJsonLeg tradeJsonLeg, List<PositionJson> positionsToRemove, PositionJson positionJson) {
+    private static void doLegParsingForLongPositionType(TradeJsonLeg tradeJsonLeg,
+                                                        List<PositionJson> positionsToRemove,
+                                                        PositionJson positionJson) {
         final int tradeJsonQuantity = tradeJsonLeg.getLongLeftQuantity() - positionJson.getQuantity();
         System.out.println("LongLeftQuantity=" + tradeJsonQuantity);
         if (tradeJsonQuantity > 0) {//not enough quantity of position
@@ -194,8 +198,11 @@ public class TradeProcessor {
         }
     }
 
-    private static int getMatchedLegsCount(int matchedLegsCount, TradeJsonLeg tradeJsonLeg) {
-        if (tradeJsonLeg.isSpreadTrade() && tradeJsonLeg.isShortMatched() && tradeJsonLeg.isLongMatched()) {
+    private static int getMatchedLegsCount(int matchedLegsCount,
+                                           TradeJsonLeg tradeJsonLeg) {
+        if (tradeJsonLeg.isSpreadTrade()
+                && tradeJsonLeg.isShortMatched()
+                && tradeJsonLeg.isLongMatched()) {
             matchedLegsCount++;
         } else if (!tradeJsonLeg.isSpreadTrade() && tradeJsonLeg.getLeftQuantity() == 0) {
             System.out.println("tradeJsonLegSymbol=" + tradeJsonLeg.getSymbol() + " is matched");
@@ -204,17 +211,19 @@ public class TradeProcessor {
         return matchedLegsCount;
     }
 
-    private static void removeEmptyPositions(List<PositionJson> positionJsonList, List<PositionJson> positionsToRemove) {
+    private static void removeEmptyPositions(List<PositionJson> positionJsonList,
+                                             List<PositionJson> positionsToRemove) {
         if (!positionsToRemove.isEmpty()) {
             positionJsonList.removeAll(positionsToRemove);
         }
     }
 
-    private static void processSimpleTrade(TradeJson tradeJson, TradeJsonLeg tradeJsonLeg, List<PositionJson> positionsToRemove, PositionJson positionJson) {
+    private static void processSimpleTrade(TradeJson tradeJson,
+                                           TradeJsonLeg tradeJsonLeg,
+                                           List<PositionJson> positionsToRemove,
+                                           PositionJson positionJson) {
         final int tradeJsonQuantity = tradeJson.getQuantity() - positionJson.getQuantity();
         System.out.println("tradeJsonQuantity=" + tradeJsonQuantity);
-        //
-
         if (tradeJsonQuantity > 0) {//not enough quantity of position
             System.out.println("not enough quantity from this position");
             positionsToRemove.add(positionJson);
@@ -234,7 +243,6 @@ public class TradeProcessor {
 
     private static boolean isTradeListEmpty(List<PositionJson> positionJsonList,
                                             List<TradeJson> tradeJsonList) {
-
         return tradeJsonList.isEmpty() && !positionJsonList.isEmpty();
     }
 }

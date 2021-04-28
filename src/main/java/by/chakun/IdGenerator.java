@@ -1,6 +1,5 @@
 package by.chakun;
 
-
 public class IdGenerator {
 
     public static Long getRandomId() {
@@ -8,4 +7,5 @@ public class IdGenerator {
         final long rightLimit = Long.MAX_VALUE / 2;
         return leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
     }
+
 }

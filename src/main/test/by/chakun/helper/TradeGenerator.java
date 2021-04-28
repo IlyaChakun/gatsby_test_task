@@ -10,23 +10,26 @@ import java.util.List;
 
 public class TradeGenerator {
 
-
-    public static TradeJson getSpreadTrade(String symbol, PositionType positionType, int quantity) {
+    public static TradeJson getSpreadTrade(String symbol,
+                                           PositionType positionType,
+                                           int quantity) {
         return doGetSimpleTrade(quantity, getLegs(symbol, positionType));
     }
 
-    private static List<TradeJsonLeg> getLegs(String symbol, PositionType positionType) {
+    private static List<TradeJsonLeg> getLegs(String symbol,
+                                              PositionType positionType) {
         List<TradeJsonLeg> tradeJsonLegs = new ArrayList<>();
         tradeJsonLegs.add(new TradeJsonLeg(symbol, positionType));
         return tradeJsonLegs;
     }
 
-
-    public static TradeJson getSimpleTrade(int quantity, List<TradeJsonLeg> legs) {
+    public static TradeJson getSimpleTrade(int quantity,
+                                           List<TradeJsonLeg> legs) {
         return doGetSimpleTrade(quantity, legs);
     }
 
-    public static TradeJson getSimpleTrade(String symbol, int quantity) {
+    public static TradeJson getSimpleTrade(String symbol,
+                                           int quantity) {
         return doGetSimpleTrade(quantity, getLegs(symbol));
     }
 
@@ -37,8 +40,8 @@ public class TradeGenerator {
         return tradeJsonLegs;
     }
 
-
-    private static TradeJson doGetSimpleTrade(int quantity, List<TradeJsonLeg> legs) {
+    private static TradeJson doGetSimpleTrade(int quantity,
+                                              List<TradeJsonLeg> legs) {
         TradeJson tradeJson = new TradeJson();
 
         tradeJson.setId(IdGenerator.getRandomId());

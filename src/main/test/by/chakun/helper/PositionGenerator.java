@@ -6,8 +6,9 @@ import by.chakun.PositionType;
 
 public class PositionGenerator {
 
-
-    public static PositionJson getPosition(String symbol, PositionType positionType, int quantity) {
+    public static PositionJson getPosition(String symbol,
+                                           PositionType positionType,
+                                           int quantity) {
         PositionJson positionJson = new PositionJson();
 
         positionJson.setId(IdGenerator.getRandomId());

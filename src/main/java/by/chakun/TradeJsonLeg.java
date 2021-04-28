@@ -16,15 +16,12 @@ public class TradeJsonLeg {
     private boolean longMatched = false;
     private int shortLeftQuantity;
     private int longLeftQuantity;
-
     private boolean isMatched;
     private int leftQuantity;
-
     @NonNull
     private String symbol;
     @NonNull
     private PositionType type;
-
 
     @Override
     public boolean equals(Object o) {
@@ -38,4 +35,5 @@ public class TradeJsonLeg {
     public int hashCode() {
         return Objects.hash(symbol, type);
     }
+
 }

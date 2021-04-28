@@ -16,7 +16,6 @@ public class TradeJson {
     private Integer quantity;
     private List<TradeJsonLeg> legs;
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -29,6 +28,5 @@ public class TradeJson {
     public int hashCode() {
         return Objects.hash(legs);
     }
-
 
 }

@@ -4,7 +4,6 @@ import lombok.*;
 
 import java.util.Objects;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,7 +15,6 @@ public class PositionJson {
     private String symbol;
     private PositionType type;
     private int quantity;
-
 
     @Override
     public boolean equals(Object o) {
